@@ -24,14 +24,14 @@ steps:
     image-name: me/node-server
     tag: develop
   perform_go_tests:
-    image: me/go-server-src
+    image: ${{build-go-server-src}}
     working_directory: ${{main_clone}}
     description: Performing go unit tests...
     commands:
       - go test ./...
       - go vet ./...
   perform_node_tests:
-    image: me/node-server
+    image: ${{build-node-server}}
     working_directory: ${{main_clone}}
     description: Performing node unit tests...
     commands:
@@ -42,7 +42,7 @@ steps:
       version: '2'
       services:
         go-service:
-          image: me/go-server
+          image: ${{build-go-server}}
     composition-candidates:
       test:
         image: ${{build-node-server}}
