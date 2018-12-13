@@ -32,7 +32,7 @@ steps:
       - go vet ./...
   perform_node_tests:
     image: ${{build-node-server}}
-    working_directory: ${{main_clone}}
+    working_directory: ${{main_clone}}/services/node-service
     description: Performing node unit tests...
     commands:
       - npm test
