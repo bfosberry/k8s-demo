@@ -7,7 +7,7 @@ steps:
     image-name: me/go-server
     tag: develop
     target: runtime
-  build-go-server:
+  build-go-server-src:
     type: build
     description: Builds my go code image
     dockerfile: services/go-service/Dockerfile
