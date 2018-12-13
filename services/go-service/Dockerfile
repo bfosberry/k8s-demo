@@ -1,4 +1,4 @@
-FROM golang:1.8.3-alpine AS src
+FROM golang:1.11.2 AS src
 MAINTAINER Aurelien PERRIER <a.perrier89@gmail.com>
 
 ENV webserver_path /go/src/github.com/perriea/webserver/
