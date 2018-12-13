@@ -23,7 +23,6 @@ steps:
     working_directory: services/node-service
     image-name: me/node-server
     tag: develop
-    target: runtime
   perform_go_tests:
     image: me/go-server-src
     working_directory: ${{main_clone}}

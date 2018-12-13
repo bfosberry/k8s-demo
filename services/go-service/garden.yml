@@ -10,7 +10,7 @@ module:
       ingresses:
         - path: /hello-go
           port: http
-   tests:
+  tests:
     - name: unit
       command: [go, test, ./...]
     - name: vet
