@@ -4,6 +4,7 @@ steps:
     type: build
     description: Builds my go server
     dockerfile: services/go-service/Dockerfile
+    working_directory: services/go-service
     image-name: me/go-server
     tag: develop
     target: runtime
@@ -11,6 +12,7 @@ steps:
     type: build
     description: Builds my go code image
     dockerfile: services/go-service/Dockerfile
+    working_directory: services/go-service
     image-name: me/go-server-src
     tag: develop
     target: src
@@ -18,6 +20,7 @@ steps:
     type: build
     description: Builds my node server
     dockerfile: services/node-service/Dockerfile
+    working_directory: services/node-service
     image-name: me/node-server
     tag: develop
     target: runtime
