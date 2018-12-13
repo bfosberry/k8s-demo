@@ -1,0 +1,47 @@
+version: '1.0'
+steps:
+  build-go-server:
+    type: build
+    description: Builds my go server
+    dockerfile: services/go-service/Dockerfile
+    image-name: me/go-server
+    tag: develop
+    target: runtime
+  build-go-server:
+    type: build
+    description: Builds my go code image
+    dockerfile: services/go-service/Dockerfile
+    image-name: me/go-server-src
+    tag: develop
+    target: src
+  build-node-server:
+    type: build
+    description: Builds my node server
+    dockerfile: services/node-service/Dockerfile
+    image-name: me/node-server
+    tag: develop
+    target: runtime
+  perform_go_tests:
+    image: me/go-server-src
+    working_directory: ${{main_clone}}
+    description: Performing go unit tests...
+    commands:
+      - go test ./...
+      - go vet ./...
+  perform_node_tests:
+    image: me/node-server
+    working_directory: ${{main_clone}}
+    description: Performing node unit tests...
+    commands:
+      - npm test
+  integration-test:
+    type: composition
+    composition:
+      version: '2'
+      services:
+        go-service:
+          image: me/go-server
+    composition-candidates:
+      test:
+        image: ${{build-node-server}}
+        command: npm run integ
