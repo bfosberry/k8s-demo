@@ -23,6 +23,7 @@ steps:
     working_directory: services/node-service
     image-name: me/node-server
     tag: develop
+    
   perform_go_tests:
     image: ${{build-go-server-src}}
     working_directory: ${{main_clone}}
@@ -36,6 +37,7 @@ steps:
     description: Performing node unit tests...
     commands:
       - npm test
+
   integration-test:
     type: composition
     composition:
